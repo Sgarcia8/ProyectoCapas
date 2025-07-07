@@ -19,7 +19,7 @@ builder.Services.AddDbContext<CinemaDbContext>(options =>
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
 // Registro de servicio generico
-builder.Services.AddScoped(typeof(IGenericService<,>), typeof(GenericService<,>));
+builder.Services.AddScoped(typeof(IGenericService<>), typeof(GenericService<>));
 
 
 builder.Services.AddControllers();
