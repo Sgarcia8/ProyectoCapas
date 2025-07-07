@@ -8,6 +8,18 @@ using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Configuración de CORS
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:4200") // El origen de la aplicación frontend
+                  .AllowAnyHeader()                     // Permite cualquier tipo de encabezado
+                  .AllowAnyMethod();                    // Permite cualquier método HTTP (GET, POST, PUT, DELETE, etc.)
+        });
+});
+
 // Add services to the container.  
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -40,6 +52,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors();
 
 app.UseAuthorization();
 
